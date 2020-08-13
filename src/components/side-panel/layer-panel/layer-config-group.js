@@ -27,24 +27,24 @@ import Switch from 'components/common/switch';
 import InfoHelper from 'components/common/info-helper';
 import {VertThreeDots} from 'components/common/icons';
 
-const DashedPrependCss = `
+const dashedPrependCss = `
   div {
     width: 12px;
-    border-top: 1px dashed #333c54;
+    border-top: 1px dashed red;
     margin-left: -17px;
   }
 `;
 export const StyledLayerConfigGroupLabel = styled.div`
-  border-left: ${props => props.theme.styledLayerConfigGroupLabelBorderLeft} solid
+  border-left: ${props => props.theme.layerConfigGroupLabelBorderLeft} solid
     ${props => props.theme.labelColor};
   line-height: 12px;
-  margin-left: ${props => props.theme.styledLayerConfigGroupLabelMargin};
-  padding-left: ${props => props.theme.styledLayerConfigGroupLabelPadding};
+  margin-left: ${props => props.theme.layerConfigGroupLabelMargin};
+  padding-left: ${props => props.theme.layerConfigGroupLabelPadding};
 
   display: flex;
   align-items: center;
 
-  ${props => (props.theme.styledLayerConfigGroupLabelDashedPrepend ? DashedPrependCss : '')}
+  ${props => (props.theme.layerConfigGroupLabelDashedPrepend ? dashedPrependCss : '')}
 
   span {
     color: ${props => props.theme.textColor};
@@ -52,8 +52,8 @@ export const StyledLayerConfigGroupLabel = styled.div`
     font-weight: 500;
     letter-spacing: 0.2px;
     text-transform: capitalize;
-    margin-left: ${props => props.theme.styledLayerConfigGroupLabelLabelMargin};
-    font-size: ${props => props.theme.styledLayerConfigGroupLabelLabelFontSize};
+    margin-left: ${props => props.theme.layerConfigGroupLabelLabelMargin};
+    font-size: ${props => props.theme.layerConfigGroupLabelLabelFontSize};
   }
 `;
 
