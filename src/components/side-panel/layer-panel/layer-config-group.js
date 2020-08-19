@@ -27,13 +27,6 @@ import Switch from 'components/common/switch';
 import InfoHelperFactory from 'components/common/info-helper';
 import {VertThreeDots} from 'components/common/icons';
 
-const dashedPrependCss = `
-  div {
-    width: 12px;
-    border-top: 1px dashed red;
-    margin-left: -17px;
-  }
-`;
 export const StyledLayerConfigGroupLabel = styled.div`
   border-left: ${props => props.theme.layerConfigGroupLabelBorderLeft} solid
     ${props => props.theme.labelColor};
@@ -43,8 +36,6 @@ export const StyledLayerConfigGroupLabel = styled.div`
 
   display: flex;
   align-items: center;
-
-  ${props => (props.theme.layerConfigGroupLabelDashedPrepend ? dashedPrependCss : '')}
 
   span {
     color: ${props => props.theme.textColor};
