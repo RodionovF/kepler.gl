@@ -24,7 +24,7 @@ import styled from 'styled-components';
 import {rgb} from 'd3-color';
 import ColorLegend from 'components/common/color-legend';
 import {CHANNEL_SCALES, DIMENSIONS} from 'constants/default-settings';
-import {FormattedMessage} from 'localization';
+import {FormattedMessage} from 'react-intl';
 
 export const StyledMapControlLegend = styled.div`
   padding: 10px 0 10px ${props => props.theme.mapControl.padding}px;
@@ -82,7 +82,7 @@ export const LayerSizeLegend = ({label, name}) => (
         <FormattedMessage id={label} />
       </span>
     </p>
-    <VisualChannelMetric name={name} />
+    {/*<VisualChannelMetric name={name} />*/}
   </div>
 );
 
@@ -127,12 +127,12 @@ export const LayerColorLegend = React.memo(({description, config, width, colorCh
 
   return (
     <div>
-      <div className="legend--layer_type">
-        <FormattedMessage id={`layer.${key}`} />
-      </div>
+      {/*<div className="legend--layer_type">*/}
+      {/*  <FormattedMessage id={`layer.${key}`} />*/}
+      {/*</div>*/}
       <div className="legend--layer_color-schema">
         <div>
-          {enableColorBy ? <VisualChannelMetric name={enableColorBy} /> : null}
+          {/*{enableColorBy ? <VisualChannelMetric name={enableColorBy} /> : null}*/}
           <div className="legend--layer_color-legend">
             {enableColorBy ? (
               <MultiColorLegend
@@ -192,21 +192,21 @@ const MapLegend = ({layers = []}) => (
               />
             ) : null
           )}
-          {nonColorChannels.map(visualChannel => {
-            const matchCondition =
-              !visualChannel.condition || visualChannel.condition(layer.config);
-            const enabled = layer.config[visualChannel.field] || visualChannel.defaultMeasure;
+          {/*{nonColorChannels.map(visualChannel => {*/}
+          {/*  const matchCondition =*/}
+          {/*    !visualChannel.condition || visualChannel.condition(layer.config);*/}
+          {/*  const enabled = layer.config[visualChannel.field] || visualChannel.defaultMeasure;*/}
 
-            const description = layer.getVisualChannelDescription(visualChannel.key);
+          {/*  const description = layer.getVisualChannelDescription(visualChannel.key);*/}
 
-            return matchCondition && enabled ? (
-              <LayerSizeLegend
-                key={visualChannel.key}
-                label={description.label}
-                name={description.measure}
-              />
-            ) : null;
-          })}
+          {/*  return matchCondition && enabled ? (*/}
+          {/*    <LayerSizeLegend*/}
+          {/*      key={visualChannel.key}*/}
+          {/*      label={description.label}*/}
+          {/*      name={description.measure}*/}
+          {/*    />*/}
+          {/*  ) : null;*/}
+          {/*})}*/}
         </StyledMapControlLegend>
       );
     })}

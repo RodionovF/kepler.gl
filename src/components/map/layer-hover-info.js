@@ -87,28 +87,80 @@ const Row = ({name, value, deltaValue, url}) => {
   );
 };
 
-const EntryInfo = ({fieldsToShow, fields, data, primaryData, compareType}) => (
-  <tbody>
-    {fieldsToShow.map(item => (
-      <EntryInfoRow
-        key={item.name}
-        item={item}
-        fields={fields}
-        data={data}
-        primaryData={primaryData}
-        compareType={compareType}
-      />
-    ))}
-  </tbody>
-);
+const EntryInfo = ({fieldsToShow, fields, data, primaryData, compareType}) => {
+  console.log(data);
+  return (
+    <tbody>
+      {fieldsToShow.map(item => (
+        <EntryInfoRow
+          key={item.name}
+          item={item}
+          fields={fields}
+          data={data}
+          primaryData={primaryData}
+          compareType={compareType}
+        />
+      ))}
+    </tbody>
+  );
+};
+
+// TODO: supporting comparative value for aggregated cells as well
+const CellInfo = ({fieldsToShow, fields, data, layer, primaryData, compareType}) => {
+  const {colorField, sizeField} = layer.config;
+
+  let one_data = data.points[0].data;
+  console.log(one_data);
+  // console.log(fields);
+
+  // fieldsToShow.map(function (name) {
+  //   return _react2.default.createElement(EntryInfoRow, {key: name, name: name, fields: fields, data: one_data});
+  // }),
+
+  return (
+    <tbody>
+      {fieldsToShow.map(item => (
+        <EntryInfoRow
+          key={item.name}
+          item={item}
+          fields={fields}
+          data={one_data}
+          primaryData={primaryData}
+          compareType={compareType}
+        />
+      ))}
+      <Row name={'Количество домов'} key="count" value={data.points && data.points.length} />
+      {/*{colorField && layer.visualChannels.color ? (*/}
+      {/*  <Row*/}
+      {/*    name={layer.getVisualChannelDescription('color').measure}*/}
+      {/*    key="color"*/}
+      {/*    value={data.colorValue || 'N/A'}*/}
+      {/*  />*/}
+      {/*) : null}*/}
+      {/*{sizeField && layer.visualChannels.size ? (*/}
+      {/*  <Row*/}
+      {/*    name={layer.getVisualChannelDescription('size').measure}*/}
+      {/*    key="size"*/}
+      {/*    value={data.elevationValue || 'N/A'}*/}
+      {/*  />*/}
+      {/*) : null}*/}
+    </tbody>
+  );
+};
 
 const EntryInfoRow = ({item, fields, data, primaryData, compareType}) => {
+  // console.log(fields);
+  // console.log(item);
+
   const fieldIdx = fields.findIndex(f => f.name === item.name);
   if (fieldIdx < 0) {
     return null;
   }
   const field = fields[fieldIdx];
+  // console.log(field);
   const displayValue = getTooltipDisplayValue({item, field, data, fieldIdx});
+
+  // console.log(displayValue);
 
   const displayDeltaValue = getTooltipDisplayDeltaValue({
     item,
@@ -120,31 +172,6 @@ const EntryInfoRow = ({item, fields, data, primaryData, compareType}) => {
   });
 
   return <Row name={item.name} value={displayValue} deltaValue={displayDeltaValue} />;
-};
-
-// TODO: supporting comparative value for aggregated cells as well
-const CellInfo = ({data, layer}) => {
-  const {colorField, sizeField} = layer.config;
-
-  return (
-    <tbody>
-      <Row name={'total points'} key="count" value={data.points && data.points.length} />
-      {colorField && layer.visualChannels.color ? (
-        <Row
-          name={layer.getVisualChannelDescription('color').measure}
-          key="color"
-          value={data.colorValue || 'N/A'}
-        />
-      ) : null}
-      {sizeField && layer.visualChannels.size ? (
-        <Row
-          name={layer.getVisualChannelDescription('size').measure}
-          key="size"
-          value={data.elevationValue || 'N/A'}
-        />
-      ) : null}
-    </tbody>
-  );
 };
 
 const LayerHoverInfoFactory = () => {

@@ -373,7 +373,7 @@ export default {
   },
   header: {
     visibleLayers: 'Visible layers',
-    layerLegend: 'Layer Legend'
+    layerLegend: 'Количество этажей'
   },
   interactions: {
     tooltip: 'Tooltip',
